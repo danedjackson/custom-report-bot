@@ -1,0 +1,26 @@
+{
+  "name": "custom-report-bot",
+  "version": "1.0.0",
+  "description": "Discord bot to allow administrators of a server to handle user reports",
+  "main": "bot.js",
+  "dependencies": {
+    "discord.js": "^13.2.0",
+    "dotenv": "^10.0.0",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danedjackson/custom-report-bot.git"
+  },
+  "author": "Dane Jackson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danedjackson/custom-report-bot/issues"
+  },
+  "homepage": "https://github.com/danedjackson/custom-report-bot#readme"
+}
