@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { Client, Intents } = require('discord.js');
 
-var { getChannels } = require('./functions/channels');
+const { onDmHandle } = require('./functions/dm-control');
 
 const token = process.env.TOKEN;
 const guildId = process.env.GUILDID;
@@ -17,24 +17,16 @@ client.on('messageCreate', async message => {
     if(message.author.bot) return;
 
     if(message.channel.type == 'DM'){
-        var server = client.guilds.cache.get(guildId);
-        await getChannels();
+        onDmHandle(client, guildId, message);
+    }
 
-        //Check if open channel already exists
-        
+    const [cmdName, ...args] = message.content
+        .trim()
+        .substring("=".length)
+        .split(/ +/g);
 
-        //If channel does not exist; create
-        var channel = await server.channels.create(message.author.tag, 'text');
-
-        await channel.permissionOverwrites.edit('287723859430604800', {
-            SEND_MESSAGES: false,
-            VIEW_CHANNEL: false,
-        });
-        await channel.permissionOverwrites.edit('287725071840313345', {
-            SEND_MESSAGES: true,
-            VIEW_CHANNEL: true,       
-        });
-        channel.send(`${message}`);
+    if ( cmdName.toLowerCase() === 'buydino' ) { 
+        message.reply('hh');
     }
 
 });
