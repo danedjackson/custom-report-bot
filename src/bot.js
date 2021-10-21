@@ -22,13 +22,15 @@ client.on('messageCreate', async message => {
         onDmHandle(client, guildId, message);
     }
     
-    const [cmdName, ...args] = message.content
+    if (message.channel.type != 'DM'){
+        const [cmdName, ...args] = message.content
         .trim()
         .substring(prefix.length)
         .split(/ +/g);
-    
-    if (message.channel.type != 'DM' && cmdName.toLowerCase() === 'close') {
-        await close(client, guildId, message);
+        
+        if(cmdName.toLowerCase() === 'close') {
+            await close(client, guildId, message);
+        }
     }
 });
 

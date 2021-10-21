@@ -14,11 +14,14 @@ var checkExistingChannel = async (server, message) => {
 var createChannel = async (server, message) => {
     var channel = await server.channels.create(message.author.tag, 'text');
 
+    //TODO:Make this role an env variable.
     //Remove rights from "everyone"
     await channel.permissionOverwrites.edit('287723859430604800', {
         SEND_MESSAGES: false,
         VIEW_CHANNEL: false,
     });
+
+    //TODO:Make this role an env variable.
     //Add rights to admin role
     await channel.permissionOverwrites.edit('287725071840313345', {
         SEND_MESSAGES: true,
