@@ -1,6 +1,4 @@
-
-const { channel } = require('diagnostics_channel');
-var { getChannels } = require('./channels');
+var { getChannels, createTicket } = require('./channels');
 
 var checkExistingChannel = async (server, message) => {
     var openChannels = await getChannels();
@@ -24,6 +22,8 @@ var createChannel = async (server, message) => {
         SEND_MESSAGES: true,
         VIEW_CHANNEL: true,       
     });
+    
+    createTicket(channel.id, channel.name);
 
     return channel;
 }

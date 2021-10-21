@@ -19,16 +19,6 @@ client.on('messageCreate', async message => {
     if(message.channel.type == 'DM'){
         onDmHandle(client, guildId, message);
     }
-
-    const [cmdName, ...args] = message.content
-        .trim()
-        .substring("=".length)
-        .split(/ +/g);
-
-    if ( cmdName.toLowerCase() === 'buydino' ) { 
-        message.reply('hh');
-    }
-
 });
 
 

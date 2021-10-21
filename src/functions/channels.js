@@ -27,11 +27,26 @@ var getChannels = async () => {
             channel = {};
         });
     } catch( err ) {
-        console.log(err);
-    } finally {
-        await client.end;
-    }
+        console.error(err);
+    } 
     return channels;
 }
 
-module.exports = { getChannels }
+var createTicket = async (channel_id, channel_name) => {
+    var query = {
+        text: `INSERT INTO channels(channel_id, channel_name, status, deleted) VALUES ($1, $2, $3, $4)`,
+        values: [channel_id, channel_name, 'open', 'N'],
+    }
+
+    var client = getClient();
+    await client.connect();
+
+    try {
+        await client.query(query);
+        console.log(`Inserted row into channels Table for user: ${channel_name}`);
+    } catch ( err ) {
+        console.error(err);
+    }
+}
+
+module.exports = { getChannels, createTicket }
